@@ -1,0 +1,10 @@
+build
+vendor
+tests/TestSupport/temp
+tests/temp
+composer.lock
+phpunit.xml
+.env
+.phpunit.result.cache
+.php-cs-fixer.cache
+phpstan.neon
