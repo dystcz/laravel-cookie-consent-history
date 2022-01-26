@@ -7,7 +7,7 @@ use Dystcz\CookieConsentHistory\Data\CookieConsentData;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 
-class SaveCookieConsent 
+class SaveCookieConsent
 {
     public function handle(CookieConsentData $data): StoresCookieConsent
     {
@@ -20,4 +20,3 @@ class SaveCookieConsent
         return $consent;
     }
 }
-
