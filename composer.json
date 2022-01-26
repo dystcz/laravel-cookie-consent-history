@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^7.4|^8.0",
+        "laravel/framework": "^8.0",
         "illuminate/support": "^8.0"
     },
     "require-dev": {
@@ -25,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Dystcz\\LaravelCookieConsentHistory\\": "src"
+            "Dystcz\\CookieConsentHistory\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Dystcz\\LaravelCookieConsentHistory\\Tests\\": "tests"
+            "Dystcz\\CookieConsentHistory\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -44,10 +45,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Dystcz\\LaravelCookieConsentHistory\\LaravelCookieConsentHistoryServiceProvider"
+                "Dystcz\\CookieConsentHistory\\CookieConsentHistoryServiceProvider"
             ],
             "aliases": {
-                "LaravelCookieConsentHistory": "Dystcz\\LaravelCookieConsentHistory\\LaravelCookieConsentHistoryFacade"
+                "CookieConsentHistory": "Dystcz\\CookieConsentHistory\\CookieConsentHistoryFacade"
             }
         }
     }
