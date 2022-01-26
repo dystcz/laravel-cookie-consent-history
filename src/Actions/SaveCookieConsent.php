@@ -13,8 +13,8 @@ class SaveCookieConsent
     {
         $consent = Config::get('cookie-consent-history.model')::create([
             'uuid' => Str::uuid(),
-            'cookie_id' => $data->cookieId,
-            'consent_data' => $data->data,
+            'cookie_id' => $data->cookie_id,
+            'consent_data' => $data->consent_data,
         ]);
 
         return $consent;

@@ -7,21 +7,21 @@ class CookieConsentData
     /**
      * Cookie id.
      *
-     * @param string $cookieId
+     * @param string $cookie_id
      */
-    public string $cookieId;
+    public string $cookie_id;
 
     /**
      * Data which will be stored as JSON.
      *
-     * @param data $data
+     * @param array $consent_data
      */
-    public array $data;
+    public array $consent_data;
 
-    public function __construct(string $cookieId, array $data)
+    public function __construct(string $cookie_id, array $consent_data)
     {
-        $this->cookieId = $cookieId;
+        $this->cookie_id = $cookie_id;
 
-        $this->data = $data;
+        $this->consent_data = $consent_data;
     }
 }
