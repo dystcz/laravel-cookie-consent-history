@@ -3,7 +3,6 @@
 namespace Dystcz\CookieConsentHistory\Models;
 
 use Dystcz\CookieConsentHistory\Contracts\StoresCookieConsent;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Config;
 
@@ -38,17 +37,4 @@ class CookieConsent extends Model implements StoresCookieConsent
     protected $guarded = [
         //
     ];
-
-    /**
-     * Scope CookieConsents by cookie id.
-     *
-     * @param mixed $query
-     * @param string $ip
-     *
-     * return Builder
-     */
-    public function scopeByCookieId($query, string $id): Builder
-    {
-        return $query->where('cookie_id', $id);
-    }
 }
