@@ -3,9 +3,9 @@
 namespace Dystcz\CookieConsentHistory;
 
 use Dystcz\CookieConsentHistory\Actions\SaveCookieConsent;
+use Dystcz\CookieConsentHistory\Contracts\StoresCookieConsent;
 use Dystcz\CookieConsentHistory\Data\CookieConsentData;
 use Dystcz\CookieConsentHistory\Http\Controllers\CookieConsentsController;
-use Dystcz\CookieConsentHistory\Models\CookieConsent;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +16,9 @@ class CookieConsentHistory
      *
      * @param CookieConsentData $data
      *
-     * @return CookieConsent
+     * @return StoresCookieConsent
      */
-    public function save(CookieConsentData $data): CookieConsent
+    public function save(CookieConsentData $data): StoresCookieConsent
     {
         return (new SaveCookieConsent)->handle($data);
     }
