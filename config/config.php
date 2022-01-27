@@ -8,7 +8,16 @@ return [
      */
     'table_prefix' => '',
 
-    /** 
+    /**
+     * The prefix for routes.
+     * There are only 2 routes, one for storing the consent data and one for retrieving.
+     *
+     * POST /cookie-consents (or your prefix) saves the consent
+     * GET /cookie-consents/{id} gets the consent if exists
+     */
+    'route_prefix' => 'cookie-consents',
+
+    /**
      * Model definition.
      * You can extend the base model to your needs.
      */
