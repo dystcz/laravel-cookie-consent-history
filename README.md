@@ -1,4 +1,4 @@
-# Laravel cookie consent history
+# 🍪 Laravel cookie consent history
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dystcz/laravel-cookie-consent-history.svg?style=flat-square)](https://packagist.org/packages/dystcz/laravel-cookie-consent-history)
 [![Total Downloads](https://img.shields.io/packagist/dt/dystcz/laravel-cookie-consent-history.svg?style=flat-square)](https://packagist.org/packages/dystcz/laravel-cookie-consent-history)
@@ -89,6 +89,13 @@ public function store(StoreCookieConsentRequest $request)
     ]);
 }
 ```
+
+## Complementary front end package
+
+We aim to also provide a complementary javascript package,
+that will work nicely with this package making cookie law compliance as easy as possible.
+
+Stay tuned.
 
 ### Testing
 
