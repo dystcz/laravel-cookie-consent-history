@@ -6,7 +6,6 @@ use Dystcz\CookieConsentHistory\CookieConsentHistoryFacade as CookieConsentHisto
 use Dystcz\CookieConsentHistory\Data\CookieConsentData;
 use Dystcz\CookieConsentHistory\Http\Requests\StoreCookieConsentRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class CookieConsentsController extends Controller
