@@ -16,8 +16,6 @@ class CreateCookieConsentsTable extends Migration
     {
         Schema::create(Config::get('cookie-consent-history.table_prefix').'cookie_consents', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
-            $table->string('cookie_id')->nullable();
             $table->json('consent_data')->nullable();
             $table->timestamps();
         });
