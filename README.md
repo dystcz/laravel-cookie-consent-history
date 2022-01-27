@@ -23,11 +23,19 @@ php artisan vendor:publish --provider="Dystcz\CookieConsentHistory\CookieConsent
 php artisan migrate
 ```
 
+Register package routes in some of your route files, but if you want to use your own routes and controller, that is completely fine.
+
+```php
+// routes/api.php
+
+use Dystcz\CookieConsentHistory\CookieConsentHistoryFacade;
+
+CookieConsentHistoryFacade::routes();
+```
+
 ## Configuration
 
 ```php
-<?php
-
 return [
     /**
      * The prefix for the table names.
@@ -37,7 +45,16 @@ return [
     'table_prefix' => '',
 
     /**
-     * Model class definition.
+     * The prefix for routes.
+     * There are only 2 routes, one for storing the consent data and one for retrieving.
+     *
+     * POST /cookie-consents (or your prefix) saves the consent
+     * GET /cookie-consents/{id} gets the consent if exists
+     */
+    'route_prefix' => 'cookie-consents',
+
+    /**
+     * Model definition.
      * You can extend the base model to your needs.
      */
     'model' => Dystcz\CookieConsentHistory\Models\CookieConsent::class,
@@ -48,75 +65,28 @@ return [
 
 ### Storing consents
 
+You can either register package routes, or you can introduce your own with your controller.
+
+Below is an example store method which comes from `Dystcz\CookieConsentHistory\Http\Controllers\CookieConsentsController`.
+
 ```php
-// Example of storing a cookie consent in your controller
-
-use Dystcz\CookieConsentHistory;
-use Dystcz\CookieConsentHistory\Data\CookieConsentData;
-
-public function store(Request $request)
+/**
+* Store cookie consent data.
+*
+* @param StoreCookieConsentRequest $request
+*
+* @return \Illuminate\Http\JsonResponse
+*/
+public function store(StoreCookieConsentRequest $request)
 {
-    // Or use dedicated FormRequest
-    $request->validate([
-        // Cookie id which comes from your frontend
-        // Can be any unique hash which serves for indentification
-        'cookie_id' => [
-            'required',
-            'string',
-        ],
-        // Whatever data you want to store in json
-        // Preferrably info about consent categories
-        // Example {"level":["necessary"],"revision":0,"data":null,"rfc_cookie":false}
-        'consent_data' => [
-            'required',
-            'array',
-        ],
-    ])
-
     // Create DTO out of validated request
     $data = new CookieConsentData(...$request->validated());
 
-    // Or create it manually
-    $data = new CookieConsentData(
-        $request->input('cookie_id'),
-        $request->input('consent_data')
-    );
+    $consent = CookieConsentHistory::save($data);
 
-    // PHP 8 style
-    $data = new CookieConsentData(
-        cookie_id: $request->input('cookie_id'),
-        consent_data: $request->input('consent_data')
-    );
-
-    $consent = CookieConsentHistory::save();
-
-    return $consent;
-}
-
-```
-
-### Getting consents
-
-```php
-// Example of getting a cookie consent in your controller
-
-use Dystcz\CookieConsentHistory;
-
-public function show(Request $request)
-{
-    // Or use dedicated FormRequest
-    $request->validate([
-        // Cookie id which comes from your frontend
-        'cookie_id' => [
-            'required',
-            'string',
-        ],
-    ])
-
-    $consent = CookieConsentHistory::find($request->input('cookie_id'));
-
-    // Returns CookieConsent or null
-    return $consent;
+    return new JsonResponse([
+        'data' => $consent,
+    ]);
 }
 ```
 
