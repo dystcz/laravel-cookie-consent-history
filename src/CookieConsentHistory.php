@@ -2,10 +2,12 @@
 
 namespace Dystcz\CookieConsentHistory;
 
-use Dystcz\CookieConsentHistory\Actions\FindCookieConsentByCookieId;
 use Dystcz\CookieConsentHistory\Actions\SaveCookieConsent;
 use Dystcz\CookieConsentHistory\Data\CookieConsentData;
+use Dystcz\CookieConsentHistory\Http\Controllers\CookieConsentsController;
 use Dystcz\CookieConsentHistory\Models\CookieConsent;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Route;
 
 class CookieConsentHistory
 {
@@ -13,21 +15,24 @@ class CookieConsentHistory
      * Save cookie consent.
      *
      * @param CookieConsentData $data
-     * @param SaveCookieConsent $action
+     *
+     * @return CookieConsent
      */
-    public function save(CookieConsentData $data, SaveCookieConsent $action): ?CookieConsent
+    public function save(CookieConsentData $data): CookieConsent
     {
-        return $action->handle($data);
+        return (new SaveCookieConsent)->handle($data);
     }
 
     /**
-     * Find cookie consent based on cookie id.
+     * Register routes.
      *
-     * @param string $cookieId
-     * @param FindCookieConsentByCookieId $action
+     * @return void
      */
-    public function findByCookieId(string $cookieId, FindCookieConsentByCookieId $action): ?CookieConsent
+    public function routes(): void
     {
-        return $action->handle($cookieId);
+        Route::group(['prefix' => Config::get('cookie-consent-history.route_prefix')], function () {
+            Route::post('/', [CookieConsentsController::class, 'store']);
+            Route::get('/{cookieId}', [CookieConsentsController::class, 'show']);
+        });
     }
 }
