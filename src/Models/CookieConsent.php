@@ -27,7 +27,7 @@ class CookieConsent extends Model implements StoresCookieConsent
      * @var array
      */
     protected $casts = [
-        'consent_data' => 'json',
+        'data' => 'json',
     ];
 
     /**

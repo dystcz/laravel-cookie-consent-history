@@ -22,7 +22,7 @@ class StoreCookieConsentRequest extends FormRequest
             // Whatever data you want to store in json
             // Preferrably info about consent categories
             // Example {"level":["necessary"],"revision":0,"data":{"id": "randomstringblabla"},"rfc_cookie":false}
-            'consent_data' => [
+            'data' => [
                 'required',
                 'array',
             ],
@@ -32,8 +32,8 @@ class StoreCookieConsentRequest extends FormRequest
     public function messages()
     {
         return [
-            'consent_data.required' => 'You need to provide consent data.',
-            'consent_data.array' => 'Consent data has to be an array.',
+            'data.required' => 'You need to provide consent data.',
+            'data.array' => 'Consent data has to be an array.',
         ];
     }
 }

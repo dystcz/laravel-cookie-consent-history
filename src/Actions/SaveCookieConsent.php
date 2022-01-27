@@ -11,7 +11,7 @@ class SaveCookieConsent
     public function handle(CookieConsentData $data): StoresCookieConsent
     {
         $consent = Config::get('cookie-consent-history.model')::create([
-            'consent_data' => $data->consent_data,
+            'data' => $data->data,
         ]);
 
         return $consent;
